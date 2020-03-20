@@ -25,8 +25,7 @@ export default class Home extends Component {
     );
 
     this.props.navigation.navigate("Browser", {
-      url:
-        "http://192.168.0.24:4545/xdeposit/start/eyJwcm9kdWN0IjoieGRlcG9zaXQiLCJkZW1vTW9kZSI6InRydWUiLCJpblNkayI6InRydWUifQ=="
+      url: `https://transact.actomicfi.com/xdeposit/start/${payload}`
     });
   };
 
