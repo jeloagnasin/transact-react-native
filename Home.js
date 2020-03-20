@@ -7,14 +7,26 @@ import {
   TouchableOpacity,
   View
 } from "react-native";
-import { NavigationContainer } from "@react-navigation/native";
-import { createStackNavigator } from "@react-navigation/stack";
+import { encode as btoa } from "base-64";
 
 export default class Home extends Component {
   triggerDeposit = () => {
+    // Deposit uses a Base64 encoded string to accept attributes
+    const payload = btoa(
+      JSON.stringify({
+        // Add the server-side generated `publicToken`
+        token: "",
+        // Could be either 'xbalance' or 'xdeposit'
+        product: "",
+        demoMode: true,
+        // Optionally theme Transact with a *dark* color
+        color: "#4B39EF"
+      })
+    );
+
     this.props.navigation.navigate("Browser", {
       url:
-        "https://transact-staging.atomicfi.com/xdeposit/start/eyJwcm9kdWN0IjoieGRlcG9zaXQiLCJkZW1vTW9kZSI6InRydWUiLCJpblNkayI6InRydWUifQ=="
+        "http://192.168.0.24:4545/xdeposit/start/eyJwcm9kdWN0IjoieGRlcG9zaXQiLCJkZW1vTW9kZSI6InRydWUiLCJpblNkayI6InRydWUifQ=="
     });
   };
 

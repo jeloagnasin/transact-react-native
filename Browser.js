@@ -1,47 +1,37 @@
 import React, { Component } from "react";
-import { Alert, StyleSheet, View, Text, StatusBar } from "react-native";
+import { Linking, StyleSheet, View } from "react-native";
 import { WebView } from "react-native-webview";
-
-const patchPostMessageFunction = function() {
-  window.ReactNativeWebView.postMessage("Hello!");
-  // var originalPostMessage = window.ReactNativeWebView;
-
-  // var patchedPostMessage = function(message, targetOrigin, transfer) {
-  //   originalPostMessage(message, targetOrigin, transfer);
-  // };
-
-  // patchedPostMessage.toString = function() {
-  //   return String(Object.hasOwnProperty).replace(
-  //     "hasOwnProperty",
-  //     "postMessage"
-  //   );
-  // };
-
-  // window.ReactNativeWebView = patchedPostMessage;
-};
-const patchPostMessageJsCode = "(" + String(patchPostMessageFunction) + ")();";
-
-const receiveEvent = event => {
-  console.log("New event!", event);
-  if (event == "atomic-transact-close") {
-    console.log("Need to close");
-  } else if (event == "atomic-transact-finish") {
-    console.log("I am finished");
-  } else if (event == "atomic-transact-open-url") {
-    console.log("Send me away");
-  }
-};
+import { decode as atob } from "base-64";
 
 export default class Browser extends Component {
+  receiveEvent = event => {
+    // React Native uses window.ReactNativeWebView.postMessage to pass data from
+    // the webview to React Native. Window.ReactNativeWebView.postMessage only accepts
+    // a string. In order to pass additional data, the event is Base64 encoded.
+
+    // Deposit will broadcast three types of events:
+    // 1) 'atomic-transact-close' : Broadcast when exiting the app
+    // 2) 'atomic-transact-finish' : Broadcast when the user finished the transaction
+    // 3) 'atomic-transact-open-url' : Broadcast when an external url is being triggered
+    let obj = atob(event);
+    let data = JSON.parse(obj);
+    if (data.event == "atomic-transact-close") {
+      this.props.navigation.goBack();
+    } else if (data.event == "atomic-transact-finish") {
+      this.props.navigation.goBack();
+    } else if (data.event == "atomic-transact-open-url") {
+      Linking.openURL(data.payload.url);
+    }
+  };
+
   render() {
     return (
       <View style={styles.container}>
         <WebView
-          injectedJavaScript={patchPostMessageJsCode}
           source={{
             uri: this.props.route.params.url
           }}
-          onMessage={event => receiveEvent(event.nativeEvent.data)}
+          onMessage={event => this.receiveEvent(event.nativeEvent.data)}
         />
       </View>
     );
