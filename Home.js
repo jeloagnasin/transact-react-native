@@ -25,7 +25,7 @@ export default class Home extends Component {
     );
 
     this.props.navigation.navigate("Browser", {
-      url: `https://transact.actomicfi.com/xdeposit/start/${payload}`
+      url: `https://transact.atomicfi.com/xdeposit/start/${payload}`
     });
   };
 
@@ -47,7 +47,7 @@ export default class Home extends Component {
 const styles = StyleSheet.create({
   container: {
     alignItems: "center",
-    backgroundColor: "#4b39ef",
+    backgroundColor: "#000023",
     flex: 1,
     justifyContent: "center"
   },
@@ -66,6 +66,6 @@ const styles = StyleSheet.create({
     width: 200
   },
   buttonText: {
-    color: "#4b39ef"
+    color: "#000023"
   }
 });
