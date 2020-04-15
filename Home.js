@@ -25,7 +25,7 @@ export default class Home extends Component {
     );
 
     this.props.navigation.navigate("Browser", {
-      url: `https://transact.atomicfi.com/xdeposit/start/${payload}`
+      url: `https://transact.atomicfi.com/deposit/start/${payload}`
     });
   };
 
