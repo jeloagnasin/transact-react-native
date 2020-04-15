@@ -5,7 +5,7 @@ import {
   StyleSheet,
   Text,
   TouchableOpacity,
-  View
+  View,
 } from "react-native";
 import { encode as btoa } from "base-64";
 
@@ -20,12 +20,12 @@ export default class Home extends Component {
         product: "",
         demoMode: true,
         // Optionally theme Transact with a *dark* color
-        color: "#4B39EF"
+        color: "#4B39EF",
       })
     );
 
     this.props.navigation.navigate("Browser", {
-      url: `https://transact.atomicfi.com/xdeposit/start/${payload}`
+      url: `https://transact.atomicfi.com/deposit/start/${payload}`,
     });
   };
 
@@ -49,11 +49,11 @@ const styles = StyleSheet.create({
     alignItems: "center",
     backgroundColor: "#000023",
     flex: 1,
-    justifyContent: "center"
+    justifyContent: "center",
   },
   logo: {
     height: 74,
-    width: 300
+    width: 300,
   },
   button: {
     alignItems: "center",
@@ -63,9 +63,9 @@ const styles = StyleSheet.create({
     height: 44,
     justifyContent: "center",
     marginTop: 50,
-    width: 200
+    width: 200,
   },
   buttonText: {
-    color: "#000023"
-  }
+    color: "#000023",
+  },
 });
