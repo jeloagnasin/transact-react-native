@@ -16,11 +16,12 @@ export default class Home extends Component {
       JSON.stringify({
         // Add the server-side generated `publicToken`
         token: "",
-        // Could be either 'xbalance' or 'xdeposit'
-        product: "",
+        // Could be either 'balance' or 'deposit'
+        product: "deposit",
         demoMode: true,
         // Optionally theme Transact with a *dark* color
-        color: "#4B39EF"
+        color: "#4B39EF",
+        inSdk: true
       })
     );
 
