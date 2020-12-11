@@ -4,7 +4,7 @@ import { WebView } from "react-native-webview";
 import { decode as atob } from "base-64";
 
 export default class Browser extends Component {
-  receiveEvent = event => {
+  receiveEvent = (event) => {
     // React Native uses window.ReactNativeWebView.postMessage to pass data from
     // the webview to React Native. Window.ReactNativeWebView.postMessage only accepts
     // a string. In order to pass additional data, the event is Base64 encoded.
@@ -21,6 +21,8 @@ export default class Browser extends Component {
       this.props.navigation.goBack();
     } else if (data.event == "atomic-transact-open-url") {
       Linking.openURL(data.payload.url);
+    } else if (data.event == "atomic-transact-interaction") {
+      console.log("brennen", data);
     }
   };
 
@@ -29,9 +31,9 @@ export default class Browser extends Component {
       <View style={styles.container}>
         <WebView
           source={{
-            uri: this.props.route.params.url
+            uri: this.props.route.params.url,
           }}
-          onMessage={event => this.receiveEvent(event.nativeEvent.data)}
+          onMessage={(event) => this.receiveEvent(event.nativeEvent.data)}
         />
       </View>
     );
@@ -40,6 +42,6 @@ export default class Browser extends Component {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1
-  }
+    flex: 1,
+  },
 });

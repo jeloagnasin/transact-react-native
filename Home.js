@@ -5,28 +5,28 @@ import {
   StyleSheet,
   Text,
   TouchableOpacity,
-  View
+  View,
 } from "react-native";
 import { encode as btoa } from "base-64";
 
 export default class Home extends Component {
-  triggerDeposit = () => {
+  triggerTransact = () => {
     // Deposit uses a Base64 encoded string to accept attributes
     const payload = btoa(
       JSON.stringify({
         // Add the server-side generated `publicToken`
-        token: "",
+        publicToken: "e886cc82-6636-49c2-b30f-1bb2f7d17cf6",
         // Could be either 'balance' or 'deposit'
         product: "deposit",
         demoMode: true,
         // Optionally theme Transact with a *dark* color
         color: "#4B39EF",
-        inSdk: true
+        inSdk: true,
       })
     );
 
     this.props.navigation.navigate("Browser", {
-      url: `https://transact.atomicfi.com/initialize/${payload}`
+      url: `https://transact.atomicfi.com/initialize/${payload}`,
     });
   };
 
@@ -37,8 +37,8 @@ export default class Home extends Component {
           style={styles.logo}
           source={require("./assets/atomic-logo.png")}
         />
-        <TouchableOpacity onPress={this.triggerDeposit} style={styles.button}>
-          <Text style={styles.buttonText}>Launch Deposit</Text>
+        <TouchableOpacity onPress={this.triggerTransact} style={styles.button}>
+          <Text style={styles.buttonText}>Launch Transact</Text>
         </TouchableOpacity>
       </View>
     );
@@ -50,11 +50,11 @@ const styles = StyleSheet.create({
     alignItems: "center",
     backgroundColor: "#000023",
     flex: 1,
-    justifyContent: "center"
+    justifyContent: "center",
   },
   logo: {
-    height: 74,
-    width: 300
+    height: 95,
+    width: 300,
   },
   button: {
     alignItems: "center",
@@ -64,9 +64,9 @@ const styles = StyleSheet.create({
     height: 44,
     justifyContent: "center",
     marginTop: 50,
-    width: 200
+    width: 200,
   },
   buttonText: {
-    color: "#000023"
-  }
+    color: "#000023",
+  },
 });
