@@ -20,7 +20,9 @@ export default class Home extends Component {
         product: "deposit",
         demoMode: true,
         // Optionally theme Transact with a *dark* color
-        color: "#4B39EF",
+        theme: {
+          brandColor: "#1b1464",
+        },
         inSdk: true,
       })
     );
