@@ -22,7 +22,7 @@ export default class Browser extends Component {
     } else if (data.event == "atomic-transact-open-url") {
       Linking.openURL(data.payload.url);
     } else if (data.event == "atomic-transact-interaction") {
-      console.log("brennen", data);
+      console.log("data", data);
     }
   };
 
