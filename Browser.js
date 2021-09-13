@@ -18,7 +18,7 @@ export default class Browser extends Component {
     if (data.event == "atomic-transact-close") {
       this.props.navigation.goBack();
     } else if (data.event == "atomic-transact-finish") {
-      this.props.navigation.goBack();
+      this.props.navigation.navigate("Finish");
     } else if (data.event == "atomic-transact-open-url") {
       Linking.openURL(data.payload.url);
     } else if (data.event == "atomic-transact-interaction") {

@@ -1,12 +1,5 @@
 import React, { Component } from "react";
-import {
-  Image,
-  Linking,
-  StyleSheet,
-  Text,
-  TouchableOpacity,
-  View,
-} from "react-native";
+import { Image, StyleSheet, TouchableOpacity, ScrollView } from "react-native";
 import { encode as btoa } from "base-64";
 
 export default class Home extends Component {
@@ -34,41 +27,48 @@ export default class Home extends Component {
 
   render() {
     return (
-      <View style={styles.container}>
-        <Image
-          style={styles.logo}
-          source={require("./assets/atomic-logo.png")}
-        />
-        <TouchableOpacity onPress={this.triggerTransact} style={styles.button}>
-          <Text style={styles.buttonText}>Launch Transact</Text>
+      <ScrollView style={styles.scrollView}>
+        <Image style={styles.top} source={require("./assets/top-341.png")} />
+        <TouchableOpacity onPress={this.triggerTransact} style={styles.middle}>
+          <Image
+            style={styles.middle}
+            source={require("./assets/middle-161.png")}
+          />
         </TouchableOpacity>
-      </View>
+        <Image
+          style={styles.bottom}
+          source={require("./assets/bottom-994.png")}
+        />
+      </ScrollView>
     );
   }
 }
 
 const styles = StyleSheet.create({
   container: {
-    alignItems: "center",
-    backgroundColor: "#000023",
     flex: 1,
-    justifyContent: "center",
   },
-  logo: {
-    height: 95,
-    width: 300,
+  scrollView: {
+    backgroundColor: "white",
+    marginHorizontal: 0,
+    marginStart: 0,
   },
-  button: {
-    alignItems: "center",
-    backgroundColor: "#FFF",
-    borderRadius: 22,
-    display: "flex",
-    height: 44,
-    justifyContent: "center",
-    marginTop: 50,
-    width: 200,
+  text: {
+    fontSize: 42,
   },
-  buttonText: {
-    color: "#000023",
+  top: {
+    height: 284,
+    flex: 1,
+    width: null,
+  },
+  middle: {
+    height: 161,
+    flex: 1,
+    width: null,
+  },
+  bottom: {
+    height: 994,
+    flex: 1,
+    width: null,
   },
 });

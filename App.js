@@ -6,6 +6,7 @@ import { createStackNavigator } from "@react-navigation/stack";
 
 import Home from "./Home";
 import Browser from "./Browser";
+import Finish from "./Finish";
 
 const Stack = createStackNavigator();
 
@@ -22,6 +23,11 @@ export default function App() {
         <Stack.Screen
           name="Browser"
           component={Browser}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="Finish"
+          component={Finish}
           options={{ headerShown: false }}
         />
       </Stack.Navigator>
